@@ -1,12 +1,12 @@
 import {configureStore} from "@reduxjs/toolkit";
+import {ShowSliceReducer} from "./slice";
 
 
 
 export const store = configureStore({
 
     reducer: {
-
-
+        show:ShowSliceReducer,
     }
 
 });
