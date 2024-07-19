@@ -4,12 +4,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch} from "../../store/store";
 import {FetchOneShow} from "../../store/slice";
 import Spinner from "../Spiner/Spinner";
+import Search from "../Search/Search";
 
 const InfoMovie = () => {
     const {id} = useParams();
     const show = useSelector((state) => state.show.show);
     const dispatch:AppDispatch = useDispatch();
     const loading = useSelector((state) => state.show.loading);
+    const img = show.image?.medium;
 
 
     useEffect(() => {
@@ -23,12 +25,13 @@ const InfoMovie = () => {
 
     return (
         <div className="container-fluid">
-            <p className="text-center mt-5">Your id is {id}</p>
+            <div>
+                <Search/>
+            </div>
             {loading ? <Spinner/> : (
-
-                <div className="card">
+                <div className="cart mb-3">
                     <div className="text-center mt-1">
-                        <img src={`${show.image.medium}`} alt="#"/>
+                        <img src={img} alt="#"/>
                     </div>
                     <div className="card-body">
                         <p className="card-title text-center">{show.name}</p>

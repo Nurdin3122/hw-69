@@ -12,7 +12,7 @@ const Layout: React.FC<React.PropsWithChildren> = ({children}) => {
                 <main className="container-fluid flex-grow-1">
                     {children}
                 </main>
-                <footer className="mt-auto">
+                <footer className="mt-auto bg-body-secondary">
                     <Footer/>
                 </footer>
             </div>

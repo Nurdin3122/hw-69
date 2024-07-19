@@ -5,7 +5,7 @@ import axios from "axios";
 
 
 export interface Show {
-    id:number;
+    id:string;
     name:string;
     text:string;
     img:string
@@ -28,13 +28,11 @@ const initialState: ShowState =  {
 export const FetchShows = createAsyncThunk<Show[],string>(
     "show/FetchShow",
     async (text:string) => {
-        console.log(text)
         const response = await axiosApi.get<Show[]>(`/${text}`);
         const shows = Object.keys(response.data).map(id => ({
             ...response.data[id],
             id,
         }))
-        console.log(shows)
         return shows ?? [];
     }
 );
@@ -43,7 +41,6 @@ export const FetchOneShow = createAsyncThunk<Show,string>(
     "show/FetchOneShow",
     async (id:string) => {
         const response = await axios.get<Show | null>(`https://api.tvmaze.com/shows/${id}`);
-        console.log(response.data);
         return response.data ?? [];
     }
     );
