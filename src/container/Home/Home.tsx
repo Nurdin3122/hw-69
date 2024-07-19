@@ -3,6 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch} from "../../store/store";
 import {FetchShows} from "../../store/slice";
 import Spinner from "../../components/Spiner/Spinner";
+import "./Home.css"
+import {Link} from "react-router-dom";
 
 const Home = () => {
     const [inputText,setInputText] = useState('');
@@ -13,7 +15,6 @@ const Home = () => {
     const changeInput = ( event: React.ChangeEvent<HTMLInputElement>) => {
         setInputText(event.target.value);
         if(event.target.value.length > 2){
-            console.log(inputText)
             dispatch(FetchShows(inputText))
         }
     }
@@ -36,11 +37,11 @@ const Home = () => {
                 <div className="row">
                 <div className="mt-3">
                         {loading ? <Spinner/> : (
-                            <ul>
+                            <div className="autocomplete">
                                 { shows.map((show) => (
-                                    <li key={show.id}>it is a {show.show.name}</li>
+                                    <Link to={`/shows/${show.show.id}`} className="m-2" key={show.id}>it is a {show.show.name}</Link>
                                 ))}
-                            </ul>
+                            </div>
                         )}
                     </div>
 
